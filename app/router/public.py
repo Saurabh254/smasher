@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends, BackgroundTasks
-from pydantic_extra_types.phone_numbers import PhoneNumber
 from app.internal import storage, sms_handler
 import random
 from redis import Redis
@@ -11,7 +10,7 @@ router = APIRouter(prefix="/public", tags=["Smsher"])
 
 @router.post("/sms", response_model=None)
 async def send_sms(
-    phoneNumber: PhoneNumber,
+    phoneNumber: str,
     background_tasks: BackgroundTasks,
     redis_client: Redis = Depends(storage.get_redis),
 ):
@@ -26,7 +25,7 @@ async def send_sms(
 
 @router.post("/verify", response_model=None)
 async def verify(
-    phoneNumber: PhoneNumber, otp: int, redis_client: Redis = Depends(storage.get_redis)
+    phoneNumber: str, otp: int, redis_client: Redis = Depends(storage.get_redis)
 ):
     value = await redis_client.get(phoneNumber)
     if value:
