@@ -1,5 +1,5 @@
-import subprocess
+import os
 
 
 def send_otp(phonenumber, message):
-    subprocess.call(["termux-sms-send", "-s", "1", "-n", phonenumber, message])
+    os.system(f"termux-sms-send -n {phonenumber} '{message}'")
