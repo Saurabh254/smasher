@@ -16,7 +16,7 @@ async def send_sms(
 ):
     otp = random.randint(0000, 9999)
     background_tasks.add_task(
-        sms_handler(phoneNumber, config.MESSAGE_TEMPLATE.format(otp))
+        sms_handler(phoneNumber, config.MESSAGE_TEMPLATE.format(str(otp)))
     )
     await redis_client.set(phoneNumber, otp, ex=config.OTP_TIMEOUT)
 
