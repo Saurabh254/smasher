@@ -24,7 +24,7 @@ async def send_sms(
 
         await redis_client.set(phoneNumber, otp, ex=config.OTP_TIMEOUT)
 
-    return {"phonenumber": phoneNumber, "otp": otp}
+    return {"phone": phoneNumber, "otp": otp}
 
 
 @router.post("/verify", response_model=None)
