@@ -9,7 +9,7 @@
 
 ## About <a name = "about"></a>
 
-SMSHER is multipurpose messaging service emulation in termux. It used backend service as redis.
+SMSHER is multipurpose messaging service emulation in termux. It used backend service as redis and termux-api.
 
 ## Getting Started <a name = "getting_started"></a>
 
